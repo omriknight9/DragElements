@@ -1,4 +1,4 @@
-﻿
+
 let imgArr = ['camp23.jpg', 'wedding.jpg', 'rafiki.jpg', 'tiger.png', 'ironman2.png', 'spiderman.png', 'dinosaur.png'];
 
 $(document).ready(function (event) {
@@ -27,7 +27,6 @@ $(document).ready(function (event) {
 function buildImages() {
     
     for (let i = 0; i < imgArr.length; i++) {
-        console.log(imgArr[i]);
         let container = $('<div>', {
             class: 'container'
         }).appendTo('main');
@@ -73,8 +72,11 @@ function dragElement(elmnt, img) {
         e = e || window.event;
         e.preventDefault();
         pos2 = e.clientX;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
+        // document.onmouseup = closeDragElement;
+        // document.onmousemove = elementDrag;
+
+        document.touchend = closeDragElement;
+        document.touchmove = elementDrag;
     }
   
     function elementDrag(e) {
@@ -98,8 +100,11 @@ function dragElement(elmnt, img) {
   
     function closeDragElement() {
         $(elmnt).css('cursor', 'grab');
-        document.onmouseup = null;
-        document.onmousemove = null;
+        // document.onmouseup = null;
+        // document.onmousemove = null;
+
+        document.touchend = null;
+        document.touchmove = null;
     }
   }
 
