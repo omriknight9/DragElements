@@ -38,6 +38,8 @@ $(document).ready(function (event) {
     }
 
     window.onscroll = function () {
+        console.log('asd');
+        $('#test').html($(window).scrollTop());
         scrollBtn();
     }
 });
@@ -62,8 +64,6 @@ function test(item, img) {
     var currentY;
     var initialX;
     var initialY;
-    var xOffset = 0;
-    var yOffset = 0;
 
     container.addEventListener("touchstart", dragStart, false);
     container.addEventListener("touchend", dragEnd, false);
@@ -95,6 +95,7 @@ function test(item, img) {
       $(item).css('cursor', 'grab');
 
       active = false;
+
     }
 
     function drag(e) {
@@ -137,6 +138,7 @@ function test(item, img) {
             if (item.offsetLeft - pos1 < 0) {
                 item.style.left = 0 + 'px';
                 $(img).css('clip', "rect(0," + 0 + ',' + 0 + ", 0");
+
             }
 
             if (item.offsetLeft - pos1 > widthNum) {
@@ -155,6 +157,7 @@ function test(item, img) {
 
     function setTranslate(xPos, yPos, el) {
       el.style.transform = "translate3d(" + xPos + "px, " + 0 + "px, 0)";
+
     }
 
 }
