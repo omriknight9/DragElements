@@ -34,7 +34,7 @@ main {
 	background-color: #ff5a4e;
 }
 
-.wrapper0, .wrapper1, .wrapper2, .wrapper3, .wrapper4, .wrapper5, .wrapper6 {
+.wrapper {
     text-align: center;
 }
 
@@ -126,7 +126,7 @@ main {
     margin: auto;
 }
 
-#moveBtn0, #moveBtn1, #moveBtn2, #moveBtn3, #moveBtn4, #moveBtn5, #moveBtn6 {
+.moveBtn {
     z-index: 2;
     width: 40px;
     height: 40px;
@@ -136,14 +136,14 @@ main {
     cursor: grab;
 }
 
-#firstImg0, #firstImg1, #firstImg2, #firstImg3, #firstImg4, #firstImg5, #firstImg6 {
+.firstImg {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
     left: 0;
     position: absolute;
 }
 
-#secondImg0, #secondImg1, #secondImg2, #secondImg3, #secondImg4, #secondImg5, #secondImg6 {
+.secondImg {
     left: 0;
     position: absolute;
     z-index: 2;
