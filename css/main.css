@@ -217,7 +217,7 @@ main {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 10rem;
+    height: 7rem;
     text-align: center;
     background-image: linear-gradient(to right, rgba(50, 50, 50, .95), rgba(200,200,200,.95));
     box-shadow: 0 0 8px 0 rgba(50, 0, 255, .95);
@@ -230,7 +230,8 @@ main {
 
 h1 {
 	text-align: center;
-	margin-top: 2rem;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
 }
 
  
@@ -332,7 +333,6 @@ p {
         height: 600px;
         clip: rect(0, 150px, 600px, 0);
     }
-    
     
     .wrapper5, .wrapper6 {
         width: 400px;
