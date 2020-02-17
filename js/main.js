@@ -73,7 +73,7 @@ function buildImages() {
 function dragElementMobile(elmnt, img) {
     let pos1 = 0, pos2 = 0
 
-    let container = $(elmnt).parent().parent().parent();
+    let container = $(elmnt).parent().parent().parent()[0];
     console.log(container);
 
     // elmnt.addEventListener("touchstart", dragMouseDown, false);
@@ -96,8 +96,8 @@ function dragElementMobile(elmnt, img) {
         e.preventDefault();
         pos2 = e.clientX;
 
-        document.addEventListener("touchend", closeDragElement, false);
-        document.addEventListener("touchmove", elementDrag, false);
+        container.addEventListener("touchend", closeDragElement, false);
+        container.addEventListener("touchmove", elementDrag, false);
         
         // document.addEventListener("mouseup", closeDragElement, false);
         // document.addEventListener("mousemove", elementDrag, false);
@@ -134,8 +134,8 @@ function dragElementMobile(elmnt, img) {
         // document.removeEventListener("mouseup", closeDragElement, false);
         // document.removeEventListener("mousemove", elementDrag, false);
 
-        document.removeEventListener("touchend", closeDragElement);
-        document.removeEventListener("touchmove", elementDrag);
+        container.removeEventListener("touchend", closeDragElement);
+        container.removeEventListener("touchmove", elementDrag);
 
     }
 }
