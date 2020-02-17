@@ -8,7 +8,7 @@ let ticking = false;
 $(document).ready(function (event) {
 
     buildImages();
-    test();
+    startDrag();
 
 
     window.onbeforeunload = function () {
@@ -16,34 +16,12 @@ $(document).ready(function (event) {
     }
 
     window.onscroll = function () {
-        console.log('asd');
-        $('#test').html($(window).scrollTop());
         scrollBtn();
     }
 
-    window.onclick = function () {
-        console.log('asd');
-        $('#test').html('asd' + $(window).scrollTop());
-    }
-
-    // window.addEventListener('scroll', function(e) {
-    //     last_known_scroll_position = window.scrollY;
-      
-    //     if (!ticking) {
-    //         $('#test').html('zxc' + $(window).scrollTop());
-    //     //   window.requestAnimationFrame(function() {
-    //     //     doSomething(last_known_scroll_position);
-            
-    //     //     ticking = false;
-    //     //   });
-      
-    //     //   ticking = true;
-    //     }
-    //   });
-
 });
 
-function test() {
+function startDrag() {
     setTimeout(function() {
         dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
         dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
@@ -55,7 +33,6 @@ function test() {
     }, 500)
 }
 
-
 function dragElement(item, img) {
 
     let pos1 = 0, pos2 = 0;
@@ -64,24 +41,19 @@ function dragElement(item, img) {
     let finalHeight = $(item).parent().parent().css('height');
     let widthNum = finalWidth.replace('px', '') - 40;
 
-    var dragItem = item;
-    // var container = document.querySelector("#container");
-
-    // var container = $(item).parent().parent().parent()[0];
-    // var container = item;
+    let dragItem = item;
+    let container;
     if ($(window).width() > 765) {
-        var container = $(item).parent().parent().parent()[0];
+        container = $(item).parent().parent().parent()[0];
     } else {
-        var container = item;
+        container = item;
     }
-    
-    console.log(container);
 
-    var active = false;
-    var currentX;
-    var currentY;
-    var initialX;
-    var initialY;
+    let active = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
 
     container.addEventListener("touchstart", dragStart, false);
     container.addEventListener("touchend", dragEnd, false);
@@ -106,14 +78,10 @@ function dragElement(item, img) {
     }
 
     function dragEnd(e) {
-
       initialX = currentX;
       initialY = currentY;
-
       $(item).css('cursor', 'grab');
-
       active = false;
-
     }
 
     function drag(e) {
@@ -167,9 +135,7 @@ function dragElement(item, img) {
 
     function setTranslate(xPos, yPos, el) {
       el.style.transform = "translate3d(" + xPos + "px, " + 0 + "px, 0)";
-
     }
-
 }
     
 function buildImages() {
