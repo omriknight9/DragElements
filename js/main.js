@@ -6,25 +6,30 @@ $(document).ready(function (event) {
     buildImages();
 
     setTimeout(function() {
-        if ($(window).width() < 765) {
-            // test(document.getElementById("moveBtn0"), $('#secondImg0'));
-            dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
-            test(document.getElementById("moveBtn1"), $('#secondImg1'));
-            // dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
-            // dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
-            // dragElement(document.getElementById("moveBtn3"), $('#secondImg3'));
-            // dragElement(document.getElementById("moveBtn4"), $('#secondImg4'));
-            // dragElement(document.getElementById("moveBtn5"), $('#secondImg5'));
-            // dragElement(document.getElementById("moveBtn6"), $('#secondImg6'));
-        } else {
-            dragElementMobile(document.getElementById("moveBtn0"), $('#secondImg0'));
-            dragElementMobile(document.getElementById("moveBtn1"), $('#secondImg1'));
-            dragElementMobile(document.getElementById("moveBtn2"), $('#secondImg2'));
-            dragElementMobile(document.getElementById("moveBtn3"), $('#secondImg3'));
-            dragElementMobile(document.getElementById("moveBtn4"), $('#secondImg4'));
-            dragElementMobile(document.getElementById("moveBtn5"), $('#secondImg5'));
-            dragElementMobile(document.getElementById("moveBtn6"), $('#secondImg6'));
-        }
+        test(document.getElementById("moveBtn0"), $('#secondImg0'));
+        test(document.getElementById("moveBtn1"), $('#secondImg1'));
+        test(document.getElementById("moveBtn2"), $('#secondImg2'));
+        test(document.getElementById("moveBtn3"), $('#secondImg3'));
+        test(document.getElementById("moveBtn4"), $('#secondImg4'));
+        test(document.getElementById("moveBtn5"), $('#secondImg5'));
+        test(document.getElementById("moveBtn6"), $('#secondImg6'));
+        // if ($(window).width() < 765) {
+        //     dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
+        //     dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
+        //     dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
+        //     dragElement(document.getElementById("moveBtn3"), $('#secondImg3'));
+        //     dragElement(document.getElementById("moveBtn4"), $('#secondImg4'));
+        //     dragElement(document.getElementById("moveBtn5"), $('#secondImg5'));
+        //     dragElement(document.getElementById("moveBtn6"), $('#secondImg6'));
+        // } else {
+        //     test(document.getElementById("moveBtn0"), $('#secondImg0'));
+        //     test(document.getElementById("moveBtn1"), $('#secondImg1'));
+        //     test(document.getElementById("moveBtn2"), $('#secondImg2'));
+        //     test(document.getElementById("moveBtn3"), $('#secondImg3'));
+        //     test(document.getElementById("moveBtn4"), $('#secondImg4'));
+        //     test(document.getElementById("moveBtn5"), $('#secondImg5'));
+        //     test(document.getElementById("moveBtn6"), $('#secondImg6'));
+        // }
 
     }, 500)
 
@@ -83,7 +88,7 @@ function test(item, img) {
     }
 
     function dragEnd(e) {
-        console.log('------------------------------------');
+
       initialX = currentX;
       initialY = currentY;
 
@@ -108,6 +113,16 @@ function test(item, img) {
             item.style.left = (item.offsetLeft - pos1) + "px";
             console.log('asd');
             $(img).css('clip', "rect(0," + (item.offsetLeft - pos1 + 20) + 'px' + ',' + finalHeight + ", 0");
+            if (item.offsetLeft - pos1 > widthNum) {
+                item.style.left = widthNum + 'px';
+                $(img).css('clip', "rect(0," + finalWidth + ',' + finalHeight + ", 0");
+            }
+
+            if (item.offsetLeft - pos1 < 0) {
+                item.style.left = 0 + 'px';
+                $(img).css('clip', "rect(0," + 0 + ',' + 0 + ", 0");
+            }
+
         } else {
             currentX = e.clientX - initialX;
             currentY = e.clientY - initialY;
@@ -118,6 +133,17 @@ function test(item, img) {
             console.log(item.offsetLeft - pos1);
             item.style.left = (item.offsetLeft - pos1) + "px";
             $(img).css('clip', "rect(0," + (item.offsetLeft - pos1 + 20) + 'px' + ',' + finalHeight + ", 0");
+
+            if (item.offsetLeft - pos1 < 0) {
+                item.style.left = 0 + 'px';
+                $(img).css('clip', "rect(0," + 0 + ',' + 0 + ", 0");
+            }
+
+            if (item.offsetLeft - pos1 > widthNum) {
+                item.style.left = widthNum + 'px';
+                $(img).css('clip', "rect(0," + finalWidth + ',' + finalHeight + ", 0");
+            }
+
         }
 
         xOffset = currentX;
