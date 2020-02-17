@@ -6,7 +6,7 @@ $(document).ready(function (event) {
     buildImages();
 
     setTimeout(function() {
-        if ($(window).width() < 765) {
+        if ($(window).width() > 765) {
             dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
             dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
             dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
