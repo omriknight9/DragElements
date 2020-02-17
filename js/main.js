@@ -23,7 +23,31 @@ $(document).ready(function (event) {
         scrollBtn();
     }
 
+    $('#input').on("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode > 47 && event.keyCode < 58 || event.keyCode > 95 && event.keyCode < 106 || event.keyCode == 8) {
+            let val = $('#input').val();
+            if (val > 99) {
+                $('#input').val(100);
+            }
+    
+            if (val < 0) {
+                $('#input').val(0);
+            }
+    
+            $.each($('.firstImg'), function (key, value) {
+                $('#firstImg' + key).css('filter', 'grayscale(' + val + ')');
+                $('#firstImg' + key).css('-webkit-filter', 'grayscale(' + val + '%)');
+            });
+        } else {
+            $('#input').val('');
+        }
+    });
 });
+
+function changePercent() {
+
+}
 
 function dragElement(item, img) {
 
