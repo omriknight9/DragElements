@@ -8,8 +8,12 @@ let ticking = false;
 $(document).ready(function (event) {
 
     buildImages();
-    startDrag();
 
+    setTimeout(function() {
+        for (let i = 0; i < imgArr.length; i++) {
+            dragElement(document.getElementById('moveBtn' + i), $('#secondImg' + i));
+        }
+    }, 500);
 
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
@@ -20,18 +24,6 @@ $(document).ready(function (event) {
     }
 
 });
-
-function startDrag() {
-    setTimeout(function() {
-        dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
-        dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
-        dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
-        dragElement(document.getElementById("moveBtn3"), $('#secondImg3'));
-        dragElement(document.getElementById("moveBtn4"), $('#secondImg4'));
-        dragElement(document.getElementById("moveBtn5"), $('#secondImg5'));
-        dragElement(document.getElementById("moveBtn6"), $('#secondImg6'));
-    }, 500)
-}
 
 function dragElement(item, img) {
 
@@ -146,7 +138,7 @@ function buildImages() {
         }).appendTo('main');
 
         let wrapper = $('<div>', {
-            class: 'wrapper' + i
+            class: 'wrapper wrapper' + i
         }).appendTo(container);
 
         let overlay = $('<div>', {
@@ -155,18 +147,21 @@ function buildImages() {
 
         let firstImg = $('<img>', {
             id: 'firstImg' + i,
+            class: 'firstImg',
             src: './images/' + imgArr[i],
             alt: imgArr[i]
         }).appendTo(overlay);
 
         let secondImg = $('<img>', {
             id: 'secondImg' + i,
+            class: 'secondImg',
             src: './images/' + imgArr[i],
             alt: imgArr[i]
         }).appendTo(overlay);
 
         let arrowButton = $('<img>', {
             id: 'moveBtn' + i,
+            class: 'moveBtn',
             src: './images/arrows.png',
             alt: 'arrowBtn'
         }).appendTo(overlay); 
