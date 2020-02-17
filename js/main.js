@@ -69,7 +69,12 @@ function dragElement(item, img) {
 
     // var container = $(item).parent().parent().parent()[0];
     // var container = item;
-    var container = $(item).parent()[0];
+    if ($(window).width() > 765) {
+        var container = $(item).parent().parent().parent()[0];
+    } else {
+        var container = item;
+    }
+    
     console.log(container);
 
     var active = false;
