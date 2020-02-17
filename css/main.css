@@ -20,6 +20,63 @@ main {
     margin-top: 12rem;
 }
 
+.inputWrapper {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+}
+
+.inputColumn {
+    width: 25rem; 
+    position: relative;
+}
+
+#input {
+    background: none;
+    display: block;
+    width: 100%;
+    height: 2rem;
+    text-indent: 2%;
+    border: 0; 
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2rem;
+    margin: auto;
+    text-align: center;
+}
+
+#input::placeholder {
+    color: black;
+}
+
+#input:focus {
+    outline: none;
+}
+
+#input ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ff5a4e;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+#input:focus ~ .focus-border {
+    width: 100%;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    left: 0;
+}
+
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
     background-color: white;
@@ -161,6 +218,7 @@ main {
     top: 0;
     width: 100%;
     height: 10rem;
+    text-align: center;
     background-image: linear-gradient(to right, rgba(50, 50, 50, .95), rgba(200,200,200,.95));
     box-shadow: 0 0 8px 0 rgba(50, 0, 255, .95);
     transition: .5s;
@@ -286,7 +344,6 @@ p {
         height: 500px;
     }
     
-
     #secondImg5, #secondImg6 {
         width: 400px;
         height: 500px;
@@ -295,6 +352,10 @@ p {
 }
 
 @media only screen and (max-width: 440px) {
+
+    .inputColumn {
+        width: 15rem; 
+    }
 
     .wrapper1, .wrapper2 {
         width: 300px;
