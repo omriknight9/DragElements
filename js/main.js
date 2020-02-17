@@ -6,7 +6,7 @@ $(document).ready(function (event) {
     buildImages();
 
     setTimeout(function() {
-        if ($(window).width() > 765) {
+        if ($(window).width() < 765) {
             dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
             dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
             dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
@@ -134,8 +134,8 @@ function dragElementMobile(elmnt, img) {
         // document.removeEventListener("mouseup", closeDragElement, false);
         // document.removeEventListener("mousemove", elementDrag, false);
 
-        document.removeEventListener("touchend", closeDragElement, false);
-        document.removeEventListener("touchmove", elementDrag, false);
+        document.removeEventListener("touchend", closeDragElement);
+        document.removeEventListener("touchmove", elementDrag);
 
     }
 }
