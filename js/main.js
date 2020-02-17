@@ -42,6 +42,11 @@ $(document).ready(function (event) {
         $('#test').html($(window).scrollTop());
         scrollBtn();
     }
+
+    window.onclick = function () {
+        console.log('asd');
+        $('#test').html($(window).scrollTop());
+    }
 });
 
 
