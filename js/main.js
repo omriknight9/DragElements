@@ -8,16 +8,8 @@ let ticking = false;
 $(document).ready(function (event) {
 
     buildImages();
+    test();
 
-    setTimeout(function() {
-        dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
-        dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
-        dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
-        dragElement(document.getElementById("moveBtn3"), $('#secondImg3'));
-        dragElement(document.getElementById("moveBtn4"), $('#secondImg4'));
-        dragElement(document.getElementById("moveBtn5"), $('#secondImg5'));
-        dragElement(document.getElementById("moveBtn6"), $('#secondImg6'));
-    }, 500)
 
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
@@ -51,6 +43,18 @@ $(document).ready(function (event) {
 
 });
 
+function test() {
+    setTimeout(function() {
+        dragElement(document.getElementById("moveBtn0"), $('#secondImg0'));
+        dragElement(document.getElementById("moveBtn1"), $('#secondImg1'));
+        dragElement(document.getElementById("moveBtn2"), $('#secondImg2'));
+        dragElement(document.getElementById("moveBtn3"), $('#secondImg3'));
+        dragElement(document.getElementById("moveBtn4"), $('#secondImg4'));
+        dragElement(document.getElementById("moveBtn5"), $('#secondImg5'));
+        dragElement(document.getElementById("moveBtn6"), $('#secondImg6'));
+    }, 500)
+}
+
 
 function dragElement(item, img) {
 
@@ -63,8 +67,10 @@ function dragElement(item, img) {
     var dragItem = item;
     // var container = document.querySelector("#container");
 
-    var container = $(item).parent().parent().parent()[0];
+    // var container = $(item).parent().parent().parent()[0];
     // var container = item;
+    var container = $(item).parent()[0];
+    console.log(container);
 
     var active = false;
     var currentX;
@@ -139,14 +145,12 @@ function dragElement(item, img) {
             if (item.offsetLeft - pos1 < 0) {
                 item.style.left = 0 + 'px';
                 $(img).css('clip', "rect(0," + 0 + ',' + 0 + ", 0");
-
             }
 
             if (item.offsetLeft - pos1 > widthNum) {
                 item.style.left = widthNum + 'px';
                 $(img).css('clip', "rect(0," + finalWidth + ',' + finalHeight + ", 0");
             }
-
         }
 
         xOffset = currentX;
