@@ -75,8 +75,10 @@ function dragElement(elmnt, img) {
         // document.onmouseup = closeDragElement;
         // document.onmousemove = elementDrag;
 
-        document.touchend = closeDragElement;
-        document.touchmove = elementDrag;
+        document.mouseup = closeDragElement;
+        document.mousemove = elementDrag;
+
+  
     }
   
     function elementDrag(e) {
@@ -103,8 +105,8 @@ function dragElement(elmnt, img) {
         // document.onmouseup = null;
         // document.onmousemove = null;
 
-        document.touchend = null;
-        document.touchmove = null;
+        document.mouseup = null;
+        document.mousemove = null;
     }
   }
 
