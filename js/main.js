@@ -1,6 +1,10 @@
 
 let imgArr = ['camp23.jpg', 'wedding.jpg', 'rafiki.jpg', 'tiger.png', 'ironman2.png', 'spiderman.png', 'dinosaur.png'];
 
+let last_known_scroll_position = 0;
+let ticking = false;
+
+
 $(document).ready(function (event) {
 
     buildImages();
@@ -29,6 +33,22 @@ $(document).ready(function (event) {
         console.log('asd');
         $('#test').html('asd' + $(window).scrollTop());
     }
+
+    window.addEventListener('scroll', function(e) {
+        last_known_scroll_position = window.scrollY;
+      
+        if (!ticking) {
+            $('#test').html('zxc' + $(window).scrollTop());
+        //   window.requestAnimationFrame(function() {
+        //     doSomething(last_known_scroll_position);
+            
+        //     ticking = false;
+        //   });
+      
+        //   ticking = true;
+        }
+      });
+
 });
 
 
