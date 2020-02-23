@@ -22,7 +22,7 @@
                 <h1>Drag Element</h1>
                 <div class="inputWrapper">
                     <div class="inputColumn">
-                        <input type="text" id="input" placeholder="Enter Gray Percent">
+                        <input type="text" id="input" placeholder="Enter Gray Percentage">
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -30,8 +30,25 @@
         </div>
     </header>
 
-    <main id="main"></main>
+    <main id="main">
+        <div id="uploadWrapper">
+            <span class="upload">
+                <b>Upload Image</b>
+                <input type="file" id="chooseImg" accept="image/*" onChange="validateAndUpload(this);">
+            </span>
+        </div>
+    </main>
     
     <img src="images/upBtn.png" alt="up arrow" class="goToTopBtn" onclick="goToTop()" />
+
+    <div id="notImagePop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="popupContent"></div>
+            <div class="Xbtn"></div>
+            <h2>Please Upload A currect Image Format</h2>
+            <p>Format Can Be Only An Image</p>
+            <p>Example: PNG, JPG, BMP</p>
+        </div>
+    </div>
 </body>
 </html>
