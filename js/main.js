@@ -1,12 +1,16 @@
 
-let imgArr = ['camp23.jpg', 'wedding.jpg', 'rafiki.jpg', 'tiger.png', 'ironman2.png', 'spiderman.png', 'dinosaur.png'];
-
+let imgArr = ['./images/camp23.jpg', './images/wedding.jpg', './images/rafiki.jpg', './images/tiger.png', './images/ironman2.png', './images/spiderman.png', './images/dinosaur.png'];
+let uploadImageCounter = 0;
 let last_known_scroll_position = 0;
 let ticking = false;
-
+let trueImage = false;
 
 $(document).ready(function (event) {
 
+    $('.Xbtn').click(function () {
+        $(this).parent().parent().fadeOut(150);
+    })
+   
     buildImages();
 
     setTimeout(function() {
@@ -22,6 +26,65 @@ $(document).ready(function (event) {
     window.onscroll = function () {
         scrollBtn();
     }
+
+    window.addEventListener('load', function() {
+
+        document.querySelector('input[type="file"]').addEventListener('change', function() {
+            if (this.files && this.files[0] && trueImage) {
+                if (uploadImageCounter > 0) {
+                    imgArr.splice(-1,1);
+                }
+                let img = document.querySelector('img');
+
+                img.src = URL.createObjectURL(this.files[0]);
+                imgArr.push(img.src);
+                $('.container').remove();
+                buildImages();
+                $('.container:last-child').insertBefore($('.container')[0]);
+
+                $($('.container')[0]).hide();
+
+
+                setTimeout(function() {
+                    let width = img.width;
+                    let height = img.height;
+
+                    $($('.container')[0]).show();
+
+                    if(img.width > $(window).width()) {
+                        if (img.height > img.width) {
+                            height = $(window).width() * 0.9;
+                            width = $(window).width() * 0.5;
+                        } else {
+                            width = $(window).width() * 0.85;
+                            height = $(window).width() * 0.5;
+                        }
+                    }
+
+                    $('.wrapper7').css({'width': width + 'px', 'height': height + 'px'});
+                    $('#firstImg7').css({'width': width + 'px', 'height': height + 'px'});
+                    $('#secondImg7').css({'width': width + 'px', 'height': height + 'px', 'clip': 'rect(0, ' + (width - (width/2)) + 'px' + ', ' + height + 'px' + ', 0)'});
+
+                    $('#firstImg7').attr('alt', 'selected img');
+                    $('#secondImg7').attr('alt', 'selected img');
+
+                    for (let i = 0; i < imgArr.length; i++) {
+
+                        dragElement(document.getElementById('moveBtn' + i), $('#secondImg' + i));
+                    }
+                    $('body').css('pointer-events', 'all');
+                }, 500);
+
+                uploadImageCounter++;
+            } else {
+                $('.wrapper7').parent().remove();
+                setTimeout(function() {
+                    $('#notImagePop').show();
+                    removePopup($('#notImagePop'));
+                }, 200)
+            } 
+        });
+      });
 
     $('#input').on("keyup", function (event) {
         event.preventDefault();
@@ -45,8 +108,21 @@ $(document).ready(function (event) {
     });
 });
 
-function changePercent() {
+function validateAndUpload(input) {
+    $('body').css('pointer-events', 'none');
+    var URL = window.URL || window.webkitURL;
+    var file = input.files[0];
 
+    if (file) {
+        if(file.type.includes('image')) {
+            trueImage = true;
+        } else {
+            trueImage = false;
+        }
+
+        var image = new Image();
+        image.src = URL.createObjectURL(file);
+    }
 }
 
 function dragElement(item, img) {
@@ -172,14 +248,14 @@ function buildImages() {
         let firstImg = $('<img>', {
             id: 'firstImg' + i,
             class: 'firstImg',
-            src: './images/' + imgArr[i],
+            src: imgArr[i],
             alt: imgArr[i]
         }).appendTo(overlay);
 
         let secondImg = $('<img>', {
             id: 'secondImg' + i,
             class: 'secondImg',
-            src: './images/' + imgArr[i],
+            src: imgArr[i],
             alt: imgArr[i]
         }).appendTo(overlay);
 
@@ -188,7 +264,7 @@ function buildImages() {
             class: 'moveBtn',
             src: './images/arrows.png',
             alt: 'arrowBtn'
-        }).appendTo(overlay); 
+        }).appendTo(overlay);
     }
 }
 
@@ -204,4 +280,15 @@ function scrollBtn() {
     else {
         $('.goToTopBtn').fadeOut();
     }
+}
+
+function removePopup(container) {
+
+    $(document).mouseup(function (e) {
+        if (container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide();
+            e.stopPropagation();
+            $(document).off('mouseup');
+        }
+    })
 }
