@@ -4,6 +4,7 @@ let uploadImageCounter = 0;
 let last_known_scroll_position = 0;
 let ticking = false;
 let trueImage = false;
+let typeToChange = 1;
 
 $(document).ready(function (event) {
 
@@ -99,14 +100,54 @@ $(document).ready(function (event) {
             }
     
             $.each($('.firstImg'), function (key, value) {
-                $('#firstImg' + key).css('filter', 'grayscale(' + val + ')');
-                $('#firstImg' + key).css('-webkit-filter', 'grayscale(' + val + '%)');
+                switch(typeToChange) {
+                    case 1:
+                        $('#firstImg' + key).css('filter', 'grayscale(' + val + ')');
+                        $('#firstImg' + key).css('-webkit-filter', 'grayscale(' + val + '%)');
+                        break;
+                    case 3:
+                        $('#firstImg' + key).css('filter', 'sepia(' + val + ')');
+                        $('#firstImg' + key).css('-webkit-filter', 'sepia(' + val + '%)');
+                        break;
+                }
             });
+            
         } else {
             $('#input').val('');
         }
     });
 });
+
+function changeImages(type) {
+
+    $('#input').val('');
+
+    let changedType;
+    switch(type) {
+        case 1:
+            changedType = 'grayscale(100%)';
+            $('.inputWrapper').show();
+            $('#input').attr('placeholder', 'Enter Gray Percentage');
+            break;
+        case 2:
+            changedType = 'grayscale(1) invert(1)';
+            $('.inputWrapper').hide();
+            break;
+        case 3:
+            changedType = 'sepia(100%)';
+            $('.inputWrapper').show();
+            $('#input').attr('placeholder', 'Enter Old Percentage');
+            break;
+    }
+
+    typeToChange = type;
+
+
+    $.each($('.firstImg'), function (key, value) {
+        $('#firstImg' + key).css('filter', changedType);
+        $('#firstImg' + key).css('-webkit-filter', changedType);
+    });
+}
 
 function validateAndUpload(input) {
     $('body').css('pointer-events', 'none');
