@@ -73,7 +73,7 @@ $(document).ready(function (event) {
 
                         dragElement(document.getElementById('moveBtn' + i), $('#secondImg' + i));
                     }
-                    $('body').css('pointer-events', 'all');
+                   
                 }, 500);
 
                 uploadImageCounter++;
@@ -111,7 +111,7 @@ $(document).ready(function (event) {
                         break;
                 }
             });
-            
+
         } else {
             $('#input').val('');
         }
@@ -142,7 +142,6 @@ function changeImages(type) {
 
     typeToChange = type;
 
-
     $.each($('.firstImg'), function (key, value) {
         $('#firstImg' + key).css('filter', changedType);
         $('#firstImg' + key).css('-webkit-filter', changedType);
@@ -164,6 +163,9 @@ function validateAndUpload(input) {
         var image = new Image();
         image.src = URL.createObjectURL(file);
     }
+    setTimeout(function(){
+        $('body').css('pointer-events', 'all');
+    }, 500)
 }
 
 function dragElement(item, img) {
